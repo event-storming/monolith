@@ -67,30 +67,30 @@ public class Order {
      * 주문이 들어옴
      */
     @PostPersist
-    private void publishOrderPlaced(){
-        // 상품 정보 변경
+    private void afterStartOrder(){
+        // 상품 수량 변경
         ProductService productService = Application.applicationContext.getBean(ProductService.class);
-        productService.onOrderPlace(this);
+        productService.increaseStock(this);
 
-        // 배송 정보 변경
+        // 배송 시작
         DeliveryService deliveryService = Application.applicationContext.getBean(DeliveryService.class);
-        deliveryService.onDeliveryStart(this);
+        deliveryService.startDelivery(this);
     }
 
     @PreUpdate
-    private void publishOrderCancelled(){
+    private void beforeCancelOrder(){
         /**
          * 주문이 취소됨
          */
         if( "OrderCancelled".equals(this.getState())){
             System.out.println("this.getState() = " + this.getState());
-            // 상품 정보 변경
+            // 상품 수량 변경
             ProductService productService = Application.applicationContext.getBean(ProductService.class);
-            productService.onOrderCancel(this);
+            productService.decreaseStock(this);
 
-            // 배송 정보 변경
+            // 배송 취소
             DeliveryService deliveryService = Application.applicationContext.getBean(DeliveryService.class);
-            deliveryService.onOrderCancel(this);
+            deliveryService.cancelDelivery(this);
         }
     }
 

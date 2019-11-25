@@ -15,7 +15,7 @@ public class ProductService {
     @Autowired
     ProductRepository productRepository;
 
-    public void onOrderPlace(Order order) {
+    public void decreaseStock(Order order) {
 
         /**
          * 주문이 발생시, 수량을 줄인다.
@@ -28,7 +28,7 @@ public class ProductService {
 
     }
 
-    public void onOrderCancel(Order order) {
+    public void increaseStock(Order order) {
         /**
          * 주문 취소시, 수량을 늘인다
          */
