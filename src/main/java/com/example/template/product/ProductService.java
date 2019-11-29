@@ -58,7 +58,6 @@ public class ProductService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
         List<ProductOption> productOptions = product.getProductOptions();
         for(ProductOption p : productOptions){
             p.setProduct(product);

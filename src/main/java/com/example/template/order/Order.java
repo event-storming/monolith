@@ -70,7 +70,7 @@ public class Order {
     private void afterStartOrder(){
         // 상품 수량 변경
         ProductService productService = Application.applicationContext.getBean(ProductService.class);
-        productService.increaseStock(this);
+        productService.decreaseStock(this);
 
         // 배송 시작
         DeliveryService deliveryService = Application.applicationContext.getBean(DeliveryService.class);
@@ -86,7 +86,7 @@ public class Order {
             System.out.println("this.getState() = " + this.getState());
             // 상품 수량 변경
             ProductService productService = Application.applicationContext.getBean(ProductService.class);
-            productService.decreaseStock(this);
+            productService.increaseStock(this);
 
             // 배송 취소
             DeliveryService deliveryService = Application.applicationContext.getBean(DeliveryService.class);
