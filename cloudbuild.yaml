@@ -81,7 +81,7 @@ steps:
                     - containerPort: 8080
         EOF
 substitutions:
-    _PROJECT_NAME: products
+    _PROJECT_NAME: monolith
 options:
   env:
     #    # location/name of GKE cluster (used by all kubectl commands)
