@@ -3,6 +3,7 @@ server:
 
 
 ---
+
 spring:
   profiles: default
   jpa:
