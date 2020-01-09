@@ -36,6 +36,6 @@ spring:
         dialect: org.hibernate.dialect.MySQL57Dialect
   datasource:
     url: jdbc:mysql://${DATASORUCE_ADDRESS:35.221.110.118:3306}/${DATASORUCE_TABLESPACE:my-database}
-    username: ${DATASORUCE_USERNAME:root}
+    username: ${DATASORUCE_USERNAME:root1}
     password: ${DATASORUCE_PASSWORD:secretpassword}
     driverClassName: com.mysql.cj.jdbc.Driver
