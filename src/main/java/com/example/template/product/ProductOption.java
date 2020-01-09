@@ -14,7 +14,7 @@ public class ProductOption {
     Long id;
     String name;
     String optionName;
-    String desc;
+    String description;
 
     @ManyToOne
     @JoinColumn(name="PRODUCT_ID", referencedColumnName="id" , nullable = true )
@@ -44,12 +44,12 @@ public class ProductOption {
         this.name = name;
     }
 
-    public String getDesc() {
-        return desc;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDesc(String desc) {
-        this.desc = desc;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public Product getProduct() {

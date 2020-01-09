@@ -37,12 +37,12 @@ public class Application {
             // 상품 디테일 추가 - 양방향 관계
             ProductOption productOption = new ProductOption();
             productOption.setName(p + "_detail");
-            productOption.setDesc(p + "_desc");
+            productOption.setDescription(p + "_desc");
             productOption.setProduct(product);
 
             ProductOption productOption1 = new ProductOption();
             productOption1.setName(p + "구매설명");
-            productOption1.setDesc(p + "설명입니다");
+            productOption1.setDescription(p + "설명입니다");
             productOption1.setProduct(product);
 
             product.addProductOptions(productOption);
