@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: monolith
+  labels:
+    app: monolith
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: monolith
+  template:
+    metadata:
+      labels:
+        app: monolith
+    spec:
+      containers:
+        - name: monolith
+          image: gcr.io/event-storming/monolith:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DATASORUCE_ADDRESS
+              value: 35.221.110.118:3306
+            - name: DATASORUCE_TABLESPACE
+              value: my-database
+            - name: DATASORUCE_USERNAME
+              value: root
+            - name: DATASORUCE_PASSWORD
+              value: secretpassword
