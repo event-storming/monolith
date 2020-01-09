@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: monolith
+  labels:
+    app: monolith
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: monolith
+  template:
+    metadata:
+      labels:
+        app: monolith
+        role: shop
+    spec:
+      containers:
+        - name: monolith
+          image: gcr.io/event-storming/monolith:latest
+          ports:
+            - containerPort: 8080

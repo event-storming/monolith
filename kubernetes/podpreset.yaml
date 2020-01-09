@@ -1,0 +1,17 @@
+apiVersion: settings.k8s.io/v1alpha1
+kind: PodPreset
+metadata:
+  name: allow-database
+spec:
+  selector:
+    matchLabels:
+      role: shop
+  env:
+    - name: DATASORUCE_ADDRESS
+      value: 35.221.110.118:3306
+    - name: DATASORUCE_TABLESPACE
+      value: my-database
+    - name: DATASORUCE_USERNAME
+      value: root
+    - name: DATASORUCE_PASSWORD
+      value: secretpassword
