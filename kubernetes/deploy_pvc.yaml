@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: test-pv-claim
+spec:
+  storageClassName: "" # 빈 문자열을 스토리지 클래스 이름으로 정정하면 PVC가 새 문자열을 동적으로 프로비저닝하는 대신 사전 프로비저닝된 PV에 바인딩합니다. => 빈 문자열로 설정하지 않으면 동적 볼륨 프로비저너가 미리 준비된 PersistentVolume이 있음에도 새 PersistentVolume을 프로비저닝합니다.
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: monolith
+  labels:
+    app: monolith
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: monolith
+  template:
+    metadata:
+      labels:
+        app: monolith
+    spec:
+      containers:
+        - name: monolith
+          image: gcr.io/event-storming/monolith:latest
+          ports:
+            - containerPort: 8080
+          volumeMounts:
+            - name: log-storage
+              mountPath: /data/log_data
+      volumes:
+        - name: log-storage
+          persistentVolumeClaim:
+            claimName: test-pv-claim
