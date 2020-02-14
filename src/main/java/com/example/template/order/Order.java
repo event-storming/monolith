@@ -68,13 +68,20 @@ public class Order {
      */
     @PostPersist
     private void afterStartOrder(){
-        // 상품 수량 변경
-        ProductService productService = Application.applicationContext.getBean(ProductService.class);
-        productService.decreaseStock(this);
+
+        Delivery delivery = new Delivery();
+        delivery.setQuantity(this.getQuantity());
+        delivery.setProductId(this.getProductId());
+        delivery.setProductName(this.getProductName());
+        delivery.setDeliveryAddress(this.getCustomerAddr());
+        delivery.setCustomerId(this.getCustomerId());
+        delivery.setCustomerName(this.getCustomerName());
+        delivery.setDeliveryState(DeliveryStatus.DeliveryStarted.name());
+        delivery.setOrder(this);
 
         // 배송 시작
         DeliveryService deliveryService = Application.applicationContext.getBean(DeliveryService.class);
-        deliveryService.startDelivery(this);
+        deliveryService.startDelivery(delivery);
     }
 
     @PreUpdate
@@ -84,13 +91,9 @@ public class Order {
          */
         if( "OrderCancelled".equals(this.getState())){
             System.out.println("this.getState() = " + this.getState());
-            // 상품 수량 변경
-            ProductService productService = Application.applicationContext.getBean(ProductService.class);
-            productService.increaseStock(this);
-
             // 배송 취소
             DeliveryService deliveryService = Application.applicationContext.getBean(DeliveryService.class);
-            deliveryService.cancelDelivery(this);
+            deliveryService.cancelDelivery(delivery.getDeliveryId());
         }
     }
 

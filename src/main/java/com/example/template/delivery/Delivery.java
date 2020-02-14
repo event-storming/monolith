@@ -1,7 +1,9 @@
 package com.example.template.delivery;
 
 
+import com.example.template.Application;
 import com.example.template.order.Order;
+import com.example.template.product.ProductService;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,6 +15,7 @@ public class Delivery {
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long deliveryId;
     private int quantity;
+    private Long productId;
     private String productName;
     private String customerId;
     private String customerName;
@@ -22,6 +25,22 @@ public class Delivery {
     @OneToOne(cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn(name = "order_id", referencedColumnName = "deliveryId")
     private Order order;
+
+    @PostPersist
+    private void callProductApi() {
+        // 상품 수량 변경 - 수량변경은 상품서비스에서 직접..
+        ProductService productService = Application.applicationContext.getBean(ProductService.class);
+        productService.decreaseStock(productId, quantity);
+    }
+
+    @PostUpdate
+    private void deliveryUpdate(){
+        if( "OrderCancelled".equals(order.getState())){
+            // 상품 수량 변경
+            ProductService productService = Application.applicationContext.getBean(ProductService.class);
+            productService.increaseStock(productId, quantity);
+        }
+    }
 
     public Long getDeliveryId() {
         return deliveryId;
@@ -37,6 +56,14 @@ public class Delivery {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+    public Long getProductId() {
+        return productId;
+    }
+
+    public void setProductId(Long productId) {
+        this.productId = productId;
     }
 
     public String getProductName() {
