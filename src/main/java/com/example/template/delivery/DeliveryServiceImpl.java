@@ -20,22 +20,9 @@ public class DeliveryServiceImpl implements DeliveryService{
     }
 
     /**
-     * 배송 완료
+     * 배송 변경
      */
-    public void completeDelivery(Long deliveryId){
-        Optional<Delivery> deliveryOptional = deliveryRepository.findById(deliveryId);
-        Delivery delivery = deliveryOptional.get();
-        delivery.setDeliveryState(DeliveryStatus.DeliveryCompleted.name());
-        deliveryRepository.save(delivery);
-    }
-
-    /**
-     * 배송 취소
-     */
-    public void cancelDelivery(Long deliveryId){
-        Optional<Delivery> deliveryOptional = deliveryRepository.findById(deliveryId);
-        Delivery delivery = deliveryOptional.get();
-        delivery.setDeliveryState(DeliveryStatus.DeliveryCancelled.name());
+    public void updateDelivery(Long deliveryId, Delivery delivery){
         deliveryRepository.save(delivery);
     }
 

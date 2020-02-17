@@ -93,7 +93,8 @@ public class Order {
             System.out.println("this.getState() = " + this.getState());
             // 배송 취소
             DeliveryService deliveryService = Application.applicationContext.getBean(DeliveryService.class);
-            deliveryService.cancelDelivery(delivery.getDeliveryId());
+            delivery.setDeliveryState(DeliveryStatus.DeliveryCancelled.name());
+            deliveryService.updateDelivery(delivery.getDeliveryId(), delivery);
         }
     }
 
