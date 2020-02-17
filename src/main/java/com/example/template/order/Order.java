@@ -67,7 +67,7 @@ public class Order {
      * 주문이 들어옴
      */
     @PostPersist
-    private void afterStartOrder(){
+    private void callDeliveryStart(){
 
         Delivery delivery = new Delivery();
         delivery.setQuantity(this.getQuantity());
@@ -85,7 +85,7 @@ public class Order {
     }
 
     @PreUpdate
-    private void beforeCancelOrder(){
+    private void callDeliveryStop(){
         /**
          * 주문이 취소됨
          */
