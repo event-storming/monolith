@@ -22,7 +22,7 @@ public class Application {
 
         ProductRepository productRepository = applicationContext.getBean(ProductRepository.class);
         // 초기 상품 셋팅
-        String[] products = {"TV", "RADIO", "NOTEBOOK", "TABLE", "CLOCK"};
+        String[] products = {"TV", "MASK", "NOTEBOOK", "TABLE", "CLOCK"};
         int i = 1;
         for(String p : products){
             Product product = new Product();
