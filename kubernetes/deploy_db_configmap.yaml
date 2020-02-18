@@ -20,22 +20,22 @@ spec:
           ports:
             - containerPort: 8080
           env:
-            - name: DATASORUCE_ADDRESS
+            - name: $_DATASOURCE_ADDRESS
               valueFrom:
                 configMapKeyRef:
                   name: db-config
                   key: datasource.address
-            - name: DATASORUCE_TABLESPACE
+            - name: $_DATASOURCE_TABLESPACE
               valueFrom:
                 configMapKeyRef:
                   name: db-config
                   key: datasource.tablespace
-            - name: DATASORUCE_USERNAME
+            - name: $_DATASOURCE_USERNAME
               valueFrom:
                 configMapKeyRef:
                   name: db-config
                   key: datasource.username
-            - name: DATASORUCE_PASSWORD
+            - name: $_DATASOURCE_PASSWORD
               valueFrom:
                 configMapKeyRef:
                   name: db-config

@@ -7,11 +7,11 @@ spec:
     matchLabels:
       role: shop
   env:
-    - name: DATASORUCE_ADDRESS
+    - name: $_DATASOURCE_ADDRESS
       value: 35.221.110.118:3306
-    - name: DATASORUCE_TABLESPACE
+    - name: $_DATASOURCE_TABLESPACE
       value: my-database
-    - name: DATASORUCE_USERNAME
+    - name: $_DATASOURCE_USERNAME
       value: root
-    - name: DATASORUCE_PASSWORD
+    - name: $_DATASOURCE_PASSWORD
       value: secretpassword
