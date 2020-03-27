@@ -1,5 +1,5 @@
 variables:
-  REPOSITORY: "113855146051.dkr.ecr.ap-northeast-2.amazonaws.com"
+  REPOSITORY: "xxxxxxxxxx.dkr.ecr.ap-northeast-2.amazonaws.com"
   IMAGE_NAME: "$REPOSITORY/$CI_PROJECT_NAME"
   MAVEN_CLI_OPTS: "-s .m2/settings.xml --batch-mode"
   MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
