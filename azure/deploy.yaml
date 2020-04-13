@@ -1,0 +1,16 @@
+apiVersion : apps/v1beta1
+kind: Deployment
+metadata:
+  name: monoloth
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: monoloth
+    spec:
+      containers:
+        - name: product
+          image: user30acr.azurecr.io/product
+          ports:
+            - containerPort: 8080
