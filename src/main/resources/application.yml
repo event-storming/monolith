@@ -30,6 +30,9 @@ logging:
 server:
   port: 8088
 
+#api:
+#  url:
+#    delivery: http://localhost:8082
 ---
 spring:
   profiles: docker

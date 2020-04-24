@@ -78,25 +78,26 @@ public class Order {
         delivery.setCustomerName(this.getCustomerName());
         delivery.setDeliveryState(DeliveryStatus.DeliveryStarted.name());
         delivery.setOrder(this);
+//        delivery.setOrderId(this.getId());
 
         // 배송 시작
         DeliveryService deliveryService = Application.applicationContext.getBean(DeliveryService.class);
         deliveryService.startDelivery(delivery);
     }
 
-    @PreUpdate
-    private void callDeliveryStop(){
-        /**
-         * 주문이 취소됨
-         */
-        if( "OrderCancelled".equals(this.getState())){
-            System.out.println("this.getState() = " + this.getState());
-            // 배송 취소
-            DeliveryService deliveryService = Application.applicationContext.getBean(DeliveryService.class);
-            delivery.setDeliveryState(DeliveryStatus.DeliveryCancelled.name());
-            deliveryService.updateDelivery(delivery.getDeliveryId(), delivery);
-        }
-    }
+//    @PreUpdate
+//    private void callDeliveryStop(){
+//        /**
+//         * 주문이 취소됨
+//         */
+//        if( "OrderCancelled".equals(this.getState())){
+//            System.out.println("this.getState() = " + this.getState());
+//            // 배송 취소
+//            DeliveryService deliveryService = Application.applicationContext.getBean(DeliveryService.class);
+//            delivery.setDeliveryState(DeliveryStatus.DeliveryCancelled.name());
+//            deliveryService.updateDelivery(delivery.getDeliveryId(), delivery);
+//        }
+//    }
 
     public Long getId() {
         return id;

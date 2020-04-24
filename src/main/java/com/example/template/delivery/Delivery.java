@@ -25,6 +25,7 @@ public class Delivery {
     @OneToOne(cascade = CascadeType.ALL)
     @PrimaryKeyJoinColumn(name = "order_id", referencedColumnName = "deliveryId")
     private Order order;
+//    private Long orderId;
 
     @PostPersist
     private void callProductApi() {
@@ -33,14 +34,14 @@ public class Delivery {
         productService.decreaseStock(productId, quantity);
     }
 
-    @PostUpdate
-    private void deliveryUpdate(){
-        if( "OrderCancelled".equals(order.getState())){
-            // 상품 수량 변경
-            ProductService productService = Application.applicationContext.getBean(ProductService.class);
-            productService.increaseStock(productId, quantity);
-        }
-    }
+//    @PostUpdate
+//    private void deliveryUpdate(){
+//        if( "OrderCancelled".equals(order.getState())){
+//            // 상품 수량 변경
+//            ProductService productService = Application.applicationContext.getBean(ProductService.class);
+//            productService.increaseStock(productId, quantity);
+//        }
+//    }
 
     public Long getDeliveryId() {
         return deliveryId;
@@ -113,4 +114,5 @@ public class Delivery {
     public void setOrder(Order order) {
         this.order = order;
     }
+
 }
