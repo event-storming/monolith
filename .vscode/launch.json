@@ -11,8 +11,8 @@
             "cwd": "${workspaceFolder}",
             "console": "internalConsole",
             "stopOnEntry": false,
-            "mainClass": "org.springframework.samples.petclinic.PetClinicApplication",
-            "projectName": "spring-petclinic",
+            "mainClass": "com.example.template.Application",
+            "projectName": "monolith",
             "args": ""
         },
         {
